@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:="http://www.w3.org/1999/xhtml">
+<head>
+	{{> meta}}
+	<title>Monica</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+{{#msrs}}
+<div>
+	{{name}}<br>{{allSteps}}
+</div>
+{{/msrs}}
+{{^msrs}}
+<div>
+Мензурок пока нет
+</div>
+{{/msrs}}
+<div>
+	<form action="/addmeasure" method="post">
+		<input type="text" name="name" placeholder="Название"><br>
+		<input type="text" name="allSteps" placeholder="Кол-во шагов"><br>
+		<input type="text" name="note" placeholder="Заметка"><br>
+		<input type="submit" value="+">
+	</form>
+</div>
+</body>
+</html>
