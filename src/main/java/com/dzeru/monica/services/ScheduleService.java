@@ -14,8 +14,10 @@ public class ScheduleService
 	@Value("${schedule.group}")
 	private String group;
 
-	public void getSchedule()
+	public String getSchedule()
 	{
+		String pageWithSchedule = "";
+
 		try
 		{
 			String schedulePath = "https://www.sgu.ru/schedule/knt/do/" + group;
@@ -32,17 +34,19 @@ public class ScheduleService
 				response.append(inputLine);
 			}
 
-			String pageWithSchedule = response.toString();
+			pageWithSchedule = response.toString();
 
 			bf.close();
 
-			pageWithSchedule = pageWithSchedule.substring(pageWithSchedule.indexOf("<table id='schedule'>"), pageWithSchedule.indexOf("</table>"));
+			pageWithSchedule = pageWithSchedule.substring(pageWithSchedule.indexOf("<table id='schedule'>"), pageWithSchedule.indexOf("</table>") + 8);
 			System.out.println(pageWithSchedule);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+
+		return pageWithSchedule;
 	}
 
 
