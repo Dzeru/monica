@@ -6,16 +6,32 @@
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
+<div>
 {{#msrs}}
 <div>
-	{{name}}<br>{{allSteps}}
+	<span>{{name}}</span>&nbsp;&nbsp;&nbsp;<span>{{doneSteps}}</span>/<span>{{allSteps}}</span>
 </div>
-{{/msrs}}
-{{^msrs}}
 <div>
-Мензурок пока нет
+	<form method="post">
+		<input type="hidden" name="id" value="{{id}}"/>
+			<div class="measure-button">
+				<input type="submit" value="-"/>
+			</div>
+			{{{htmlView}}}
+			<div class="measure-button fr">
+				<input type="submit" formaction="plussteps/{{id}}" value="+"/>
+			</div>
+	</form>
 </div>
 {{/msrs}}
+</div>
+<div>
+{{^msrs}}
+
+Мензурок пока нет
+
+{{/msrs}}
+</div>
 <div>
 	<form action="/addmeasure" method="post">
 		<input type="text" name="name" placeholder="Название"><br>

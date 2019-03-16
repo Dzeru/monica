@@ -9,4 +9,5 @@ import org.springframework.stereotype.Service;
 @Repository
 public interface MeasureRepo extends JpaRepository<Measure, Long>
 {
+	Measure findByIdEquals(Long id);
 }

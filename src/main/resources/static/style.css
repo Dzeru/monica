@@ -72,14 +72,35 @@ body
 	display: inline-block;
 	width: 50%;
 	height: 50vh;
-}
-
-.right-big-rectangle
-{
-    float: right;
+	text-align: center;
 }
 
 .rectangle-name
 {
 	color: #fff;
+	text-decoration: none;
+	font-size: 40px;
+	vertical-align: center;
+	line-height: 50vh;
+}
+
+.measure
+{
+    display: inline-block;
+    width: 80%;
+    border: 2px solid #000;
+    border-radius: 50px;
+    height: 8vh;
+}
+
+.measure-button
+{
+    display: inline-block;
+    width: 9%;
+    height: 8vh;
+}
+
+.fr
+{
+    float: right;
 }
