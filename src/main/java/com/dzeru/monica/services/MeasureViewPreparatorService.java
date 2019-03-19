@@ -16,7 +16,7 @@ public class MeasureViewPreparatorService
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("<div class=\"measure\" ");
-		sb.append("style=\"background: linear-gradient(to right, green " +
+		sb.append("style=\"background: linear-gradient(to right, " + measureView.getColor() + " " +
 				percentage + "%, white " + percentage + "%)\">");
 		sb.append("</div>");
 		measureView.setHtmlView(sb.toString());

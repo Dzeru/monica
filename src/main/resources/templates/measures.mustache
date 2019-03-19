@@ -7,19 +7,37 @@
 </head>
 <body>
 <div>
+	<form action="addmeasure" method="post">
+		<input type="text" name="name" placeholder="Название">
+		<input type="text" name="allSteps" placeholder="Кол-во шагов">
+		<input type="text" name="note" placeholder="Заметка">
+		<input type="text" name="color" placeholder="Цвет">
+		<input type="submit" value="+">
+	</form>
+</div>
+<div>
 {{#msrs}}
 <div>
-	<span>{{name}}</span>&nbsp;&nbsp;&nbsp;<span>{{doneSteps}}</span>/<span>{{allSteps}}</span>
+	<table>
+		<tr>
+			<td><span>{{name}}</span></td>
+			<td><span>{{doneSteps}}</span>/<span>{{allSteps}}</span></td>
+			<td><span>{{percentage}}</span></td>
+		</tr>
+		<tr>
+			<td><span>{{note}}</span></td>
+		</tr>
+	</table>
 </div>
 <div>
 	<form method="post">
 		<input type="hidden" name="id" value="{{id}}"/>
-			<div class="measure-button">
-				<input type="submit" value="-"/>
+			<div class="measure-button-div">
+				<input class="measure-button" type="submit" formaction="minussteps/{{id}}" value="-"/>
 			</div>
 			{{{htmlView}}}
-			<div class="measure-button fr">
-				<input type="submit" formaction="plussteps/{{id}}" value="+"/>
+			<div class="measure-button-div fr">
+				<input class="measure-button" type="submit" formaction="plussteps/{{id}}" value="+"/>
 			</div>
 	</form>
 </div>
@@ -27,16 +45,15 @@
 </div>
 <div>
 {{^msrs}}
-
 Мензурок пока нет
-
 {{/msrs}}
 </div>
 <div>
-	<form action="/addmeasure" method="post">
-		<input type="text" name="name" placeholder="Название"><br>
-		<input type="text" name="allSteps" placeholder="Кол-во шагов"><br>
-		<input type="text" name="note" placeholder="Заметка"><br>
+	<form action="addmeasure" method="post">
+		<input type="text" name="name" placeholder="Название">
+		<input type="text" name="allSteps" placeholder="Кол-во шагов">
+		<input type="text" name="note" placeholder="Заметка">
+		<input type="text" name="color" placeholder="Цвет">
 		<input type="submit" value="+">
 	</form>
 </div>

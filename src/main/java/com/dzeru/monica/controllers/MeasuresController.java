@@ -46,13 +46,14 @@ public class MeasuresController
 	}
 
 	@PostMapping("/addmeasure")
-	public String addmeasure(String name, int allSteps, String note, Model model)
+	public String addmeasure(String name, int allSteps, String note, String color, Model model)
 	{
 		Measure measure = new Measure();
 		measure.setName(name);
 		measure.setAllSteps(allSteps);
 		measure.setDoneSteps(0);
 		measure.setNote(note);
+		measure.setColor(color);
 		measureRepo.save(measure);
 
 		List<Measure> measures = measureRepo.findAll();
@@ -66,8 +67,37 @@ public class MeasuresController
 	{
 		Measure measure = measureRepo.findByIdEquals(id);
 		int newDoneSteps = measure.getDoneSteps() + 1;
-		measure.setDoneSteps(newDoneSteps);
-		measureRepo.save(measure);
+
+		if(newDoneSteps <= measure.getAllSteps())
+		{
+			measure.setDoneSteps(newDoneSteps);
+			measureRepo.save(measure);
+		}
+
+		List<Measure> measures = measureRepo.findAll();
+		List<MeasureView> measureViews = new ArrayList<MeasureView>();
+
+		for(Measure m : measures)
+		{
+			measureViews.add(measureViewPreparatorService.prepareMeasureView(m));
+		}
+
+		model.addAttribute("msrs", measureViews);
+
+		return "redirect:/measures/measures";
+	}
+
+	@PostMapping("/minussteps/{id}")
+	public String minusSteps(@PathVariable("id") Long id, Model model)
+	{
+		Measure measure = measureRepo.findByIdEquals(id);
+		int newDoneSteps = measure.getDoneSteps() - 1;
+
+		if(newDoneSteps >= 0)
+		{
+			measure.setDoneSteps(newDoneSteps);
+			measureRepo.save(measure);
+		}
 
 		List<Measure> measures = measureRepo.findAll();
 		List<MeasureView> measureViews = new ArrayList<MeasureView>();

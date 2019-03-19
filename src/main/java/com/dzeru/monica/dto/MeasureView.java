@@ -11,6 +11,7 @@ public class MeasureView
 	private int doneSteps;
 	private int allSteps;
 	private String note;
+	private String color;
 	private int percentage;
 	private String htmlView;
 
@@ -26,5 +27,6 @@ public class MeasureView
 		doneSteps = measure.getDoneSteps();
 		allSteps = measure.getAllSteps();
 		note = measure.getNote();
+		color = measure.getColor();
 	}
 }

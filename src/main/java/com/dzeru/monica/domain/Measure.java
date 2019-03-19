@@ -19,4 +19,5 @@ public class Measure
 	private int doneSteps;
 	private int allSteps;
 	private String note;
+	private String color;
 }
