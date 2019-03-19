@@ -105,9 +105,34 @@ body
     background: grey;
     text-align: center;
     border-radius: 50%;
+    width: 8vh;
+    height: 100%;
 }
+
+.add-measure-table
+{
+    width: 100%;
+    text-align: center;
+    cell-spacing: 3px;
+}
+
+
+/*
+
+Atomic values
+*/
 
 .fr
 {
     float: right;
+}
+
+.fl
+{
+    float: left;
+}
+
+.m-30px
+{
+    margin: 30px;
 }
