@@ -6,12 +6,7 @@ import lombok.Data;
 @Data
 public class MeasureView
 {
-	private Long id;
-	private String name;
-	private int doneSteps;
-	private int allSteps;
-	private String note;
-	private String color;
+	Measure measure;
 	private int percentage;
 	private String htmlView;
 
@@ -22,11 +17,6 @@ public class MeasureView
 
 	public MeasureView(Measure measure)
 	{
-		id = measure.getId();
-		name = measure.getName();
-		doneSteps = measure.getDoneSteps();
-		allSteps = measure.getAllSteps();
-		note = measure.getNote();
-		color = measure.getColor();
+		this.measure = measure;
 	}
 }

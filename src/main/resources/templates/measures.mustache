@@ -18,26 +18,28 @@
 <div>
 {{#msrs}}
 <div>
-	<table class="add-measure-table">
-		<tr>
-			<td><span>{{name}}</span></td>
-			<td><span>{{doneSteps}}</span>/<span>{{allSteps}}</span></td>
-			<td><span>{{percentage}}%</span></td>
-		</tr>
-		<tr>
-			<td><span>{{note}}</span></td>
-		</tr>
-	</table>
+	<form action="updatemeasure/{{measure.id}}" method="post">
+		<table class="add-measure-table">
+			<tr>
+				<td><input type="text" name="name" value="{{measure.name}}"/></td>
+				<td><input type="text" name="doneSteps" value="{{measure.doneSteps}}" col="3"/>/<input type="text" name="allSteps" value="{{measure.allSteps}}" col="3"/></td>
+				<td><span>{{percentage}}%</span></td>
+				<td><input type="submit" value="Обновить"/></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="note" value="{{measure.note}}"/></td>
+			</tr>
+		</table>
+	</form>
 </div>
 <div>
 	<form method="post">
-		<input type="hidden" name="id" value="{{id}}"/>
 			<div class="measure-button-div fl">
-				<input class="measure-button" type="submit" formaction="minussteps/{{id}}" value="-"/>
+				<input class="measure-button" type="submit" formaction="minussteps/{{measure.id}}" value="-"/>
 			</div>
 			{{{htmlView}}}
 			<div class="measure-button-div fr">
-				<input class="measure-button" type="submit" formaction="plussteps/{{id}}" value="+"/>
+				<input class="measure-button" type="submit" formaction="plussteps/{{measure.id}}" value="+"/>
 			</div>
 	</form>
 </div>
