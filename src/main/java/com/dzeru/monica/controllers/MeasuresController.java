@@ -111,4 +111,27 @@ public class MeasuresController
 
 		return "redirect:/measures/measures";
 	}
+
+	@PostMapping("/updatemeasure/{id}")
+	public String updateMeasure(@PathVariable("id") Long id, String name, int doneSteps, int allSteps, String note, Model model)
+	{
+		Measure measure = measureRepo.findByIdEquals(id);
+		measure.setName(name);
+		measure.setDoneSteps(doneSteps);
+		measure.setAllSteps(allSteps);
+		measure.setNote(note);
+		measureRepo.save(measure);
+
+		List<Measure> measures = measureRepo.findAll();
+		List<MeasureView> measureViews = new ArrayList<MeasureView>();
+
+		for(Measure m : measures)
+		{
+			measureViews.add(measureViewPreparatorService.prepareMeasureView(m));
+		}
+
+		model.addAttribute("msrs", measureViews);
+
+		return "redirect:/measures/measures";
+	}
 }
