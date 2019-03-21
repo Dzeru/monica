@@ -5,16 +5,8 @@
 	<title>Monica</title>
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
-<body>
-<div class="m-30px">
-	<form action="addmeasure" method="post">
-		<input class="input-add-measure" type="text" name="name" placeholder="Название">
-		<input class="input-add-measure" type="text" name="allSteps" placeholder="Кол-во шагов">
-		<input class="input-add-measure" type="text" name="note" placeholder="Заметка">
-		<input class="input-add-measure" type="text" name="color" placeholder="Цвет">
-		<input class="usual-button" type="submit" value="+">
-	</form>
-</div>
+<body class="measure-background">
+{{> addmeasureform}}
 <div>
 {{#msrs}}
 <div class="mb-20px">
@@ -51,14 +43,6 @@
 Мензурок пока нет
 </div>
 {{/msrs}}
-<div class="m-30px">
-	<form action="addmeasure" method="post">
-		<input class="input-add-measure" type="text" name="name" placeholder="Название">
-		<input class="input-add-measure" type="text" name="allSteps" placeholder="Кол-во шагов">
-		<input class="input-add-measure" type="text" name="note" placeholder="Заметка">
-		<input class="input-add-measure" type="text" name="color" placeholder="Цвет">
-		<input class="usual-button" type="submit" value="+">
-	</form>
-</div>
+{{> addmeasureform}}
 </body>
 </html>
