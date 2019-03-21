@@ -134,4 +134,22 @@ public class MeasuresController
 
 		return "redirect:/measures/measures";
 	}
+
+	@PostMapping("/deletemeasure/{id}")
+	public String deleteMeasure(@PathVariable("id") Long id, Model model)
+	{
+		measureRepo.deleteById(id);
+
+		List<Measure> measures = measureRepo.findAll();
+		List<MeasureView> measureViews = new ArrayList<MeasureView>();
+
+		for(Measure m : measures)
+		{
+			measureViews.add(measureViewPreparatorService.prepareMeasureView(m));
+		}
+
+		model.addAttribute("msrs", measureViews);
+
+		return "redirect:/measures/measures";
+	}
 }

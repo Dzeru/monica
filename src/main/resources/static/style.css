@@ -67,6 +67,11 @@ body
 	font-family: "Arial";
 }
 
+td
+{
+    padding: 3px;
+}
+
 .big-rectangle
 {
 	display: inline-block;
@@ -109,11 +114,30 @@ body
     height: 100%;
 }
 
-.add-measure-table
+.measure-table
 {
     width: 100%;
     text-align: center;
-    cell-spacing: 3px;
+}
+
+.input-add-measure
+{
+    font-size: 16px;
+    border-radius: 50px;
+    border: 2px solid #000;
+}
+
+.input-table-measure
+{
+    font-size: 16px;
+    border: none;
+}
+
+.usual-button
+{
+    font-size: 16px;
+    background: #cccc66;
+    border-radius: 5px;
 }
 
 
@@ -135,4 +159,24 @@ Atomic values
 .m-30px
 {
     margin: 30px;
+}
+
+.mb-40px
+{
+    margin-bottom: 40px;
+}
+
+.mb-20px
+{
+    margin-bottom: 20px;
+}
+
+.tar
+{
+    text-align: right;
+}
+
+.font-bold
+{
+    font-weight: bold;
 }

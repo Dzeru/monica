@@ -8,31 +8,32 @@
 <body>
 <div class="m-30px">
 	<form action="addmeasure" method="post">
-		<input type="text" name="name" placeholder="Название">
-		<input type="text" name="allSteps" placeholder="Кол-во шагов">
-		<input type="text" name="note" placeholder="Заметка">
-		<input type="text" name="color" placeholder="Цвет">
-		<input type="submit" value="+">
+		<input class="input-add-measure" type="text" name="name" placeholder="Название">
+		<input class="input-add-measure" type="text" name="allSteps" placeholder="Кол-во шагов">
+		<input class="input-add-measure" type="text" name="note" placeholder="Заметка">
+		<input class="input-add-measure" type="text" name="color" placeholder="Цвет">
+		<input class="usual-button" type="submit" value="+">
 	</form>
 </div>
 <div>
 {{#msrs}}
-<div>
-	<form action="updatemeasure/{{measure.id}}" method="post">
-		<table class="add-measure-table">
+<div class="mb-20px">
+	<form method="post">
+		<table class="measure-table">
 			<tr>
-				<td><input type="text" name="name" value="{{measure.name}}"/></td>
-				<td><input type="text" name="doneSteps" value="{{measure.doneSteps}}" col="3"/>/<input type="text" name="allSteps" value="{{measure.allSteps}}" col="3"/></td>
+				<td><input class="input-table-measure font-bold" type="text" name="name" value="{{measure.name}}" size="35"/></td>
+				<td><input class="input-table-measure tar" type="text" name="doneSteps" value="{{measure.doneSteps}}" size="4"/>/<input class="input-table-measure" type="text" name="allSteps" value="{{measure.allSteps}}" size="4"/></td>
 				<td><span>{{percentage}}%</span></td>
-				<td><input type="submit" value="Обновить"/></td>
+				<td><input class="usual-button" type="submit" formaction="updatemeasure/{{measure.id}}" value="Обновить"/></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="note" value="{{measure.note}}"/></td>
+				<td colspan="3"><input class="input-table-measure" type="text" name="note" value="{{measure.note}}" size="40"/></td>
+				<td><input class="usual-button" type="submit" formaction="deletemeasure/{{measure.id}}" value="Удалить"/></td>
 			</tr>
 		</table>
 	</form>
 </div>
-<div>
+<div class="mb-40px">
 	<form method="post">
 			<div class="measure-button-div fl">
 				<input class="measure-button" type="submit" formaction="minussteps/{{measure.id}}" value="-"/>
@@ -45,18 +46,18 @@
 </div>
 {{/msrs}}
 </div>
-<div>
 {{^msrs}}
+<div>
 Мензурок пока нет
-{{/msrs}}
 </div>
+{{/msrs}}
 <div class="m-30px">
 	<form action="addmeasure" method="post">
-		<input type="text" name="name" placeholder="Название">
-		<input type="text" name="allSteps" placeholder="Кол-во шагов">
-		<input type="text" name="note" placeholder="Заметка">
-		<input type="text" name="color" placeholder="Цвет">
-		<input type="submit" value="+">
+		<input class="input-add-measure" type="text" name="name" placeholder="Название">
+		<input class="input-add-measure" type="text" name="allSteps" placeholder="Кол-во шагов">
+		<input class="input-add-measure" type="text" name="note" placeholder="Заметка">
+		<input class="input-add-measure" type="text" name="color" placeholder="Цвет">
+		<input class="usual-button" type="submit" value="+">
 	</form>
 </div>
 </body>
