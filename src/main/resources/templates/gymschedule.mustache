@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:="http://www.w3.org/1999/xhtml">
+<head>
+	{{> meta}}
+	<title>Физкультура</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<div>
+	<form action="/addgymlesson" method="post">
+		<input type="text" name="lesson" placeholder="Номер пары"/>
+		<input type="text" name="day" placeholder="Номер дня"/>
+		<input type="text" name="description" placeholder="Описание"/>
+		<input type="submit" value="+"/>
+	</form>
+</div>
+<div>
+	<table style="display: inline-block">
+		<tr>
+			<td style="border-width:thin;border-style:solid;border-color:#000;text-align:center;vertical-align:middle;">Время</td>
+		</tr>
+		<tr>
+			<td style="border-width:thin;border-style:solid;border-color:#000;height:15vh;text-align:center;vertical-align:middle;">8:20-9:50</td>
+		</tr>
+		<tr>
+			<td style="border-width:thin;border-style:solid;border-color:#000;height:15vh;text-align:center;vertical-align:middle;">10:00-11:35</td>
+		</tr>
+		<tr>
+			<td style="border-width:thin;border-style:solid;border-color:#000;height:15vh;text-align:center;vertical-align:middle;">12:05-13:40</td>
+		</tr>
+		<tr>
+			<td style="border-width:thin;border-style:solid;border-color:#000;height:15vh;text-align:center;vertical-align:middle;">13:50-15:25</td>
+		</tr>
+		<tr>
+			<td style="border-width:thin;border-style:solid;border-color:#000;height:15vh;text-align:center;vertical-align:middle;">15:35-17:10</td>
+		</tr>
+		<tr>
+			<td style="border-width:thin;border-style:solid;border-color:#000;height:15vh;text-align:center;vertical-align:middle;">17:10-18:40</td>
+		</tr>
+	</table>
+{{#gymScheduleView}}{{{gymScheduleView}}}{{/gymScheduleView}}
+</div>
+</body>
+</html>

@@ -1,6 +1,5 @@
 package com.dzeru.monica.services;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -11,10 +10,7 @@ import java.net.URL;
 @Service
 public class ScheduleService
 {
-	@Value("${schedule.group}")
-	private String group;
-
-	public String getSchedule()
+	public String getSchedule(String group)
 	{
 		String pageWithSchedule = "";
 
@@ -48,6 +44,4 @@ public class ScheduleService
 
 		return pageWithSchedule;
 	}
-
-
 }
