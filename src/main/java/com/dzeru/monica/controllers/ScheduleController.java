@@ -17,7 +17,7 @@ public class ScheduleController
 	@GetMapping("/updateschedule")
 	public String updateSchedule(Model model)
 	{
-		String schedule = scheduleService.getScheduleFromWeb();
+		scheduleService.getScheduleFromWeb();
 		return "redirect:/schedule/schedule";
 	}
 
@@ -34,5 +34,4 @@ public class ScheduleController
 		model.addAttribute("schedule", schedule);
 		return "schedule";
 	}
-
 }

@@ -13,7 +13,7 @@ public class ScheduleService
 	@Value("${schedule.group}")
 	private String group;
 
-	public String getScheduleFromWeb()
+	public void getScheduleFromWeb()
 	{
 		String pageWithSchedule = "";
 
@@ -45,8 +45,6 @@ public class ScheduleService
 		{
 			e.printStackTrace();
 		}
-
-		return pageWithSchedule;
 	}
 
 	public String getScheduleFromFile()
@@ -55,7 +53,6 @@ public class ScheduleService
 		try
 		{
 			File scheduleFile = new File("src/main/resources/schedule.txt");
-			//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("schedule.txt");
 
 			if(!scheduleFile.exists())
 			{
