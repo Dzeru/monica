@@ -14,12 +14,25 @@ public class ScheduleController
 	@Autowired
 	ScheduleService scheduleService;
 
+	@GetMapping("/updateschedule")
+	public String updateSchedule(Model model)
+	{
+		String schedule = scheduleService.getScheduleFromWeb();
+		return "redirect:/schedule/schedule";
+	}
+
 	@GetMapping("/schedule")
 	public String schedule(Model model)
 	{
-		String schedule = scheduleService.getSchedule();
-		model.addAttribute("schedule", schedule);
+		String schedule = scheduleService.getScheduleFromFile();
 
+		if(schedule == null || schedule.isEmpty())
+		{
+			return "redirect:/schedule/updateschedule";
+		}
+
+		model.addAttribute("schedule", schedule);
 		return "schedule";
 	}
+
 }

@@ -4,12 +4,16 @@
 	{{> meta}}
 	<title>Monica</title>
 	<link rel="stylesheet" type="text/css" href="/style.css">
+	<link rel="stylesheet" type="text/css" href="/schedule.css">
 </head>
 <body>
-Тут будет расписание
-<br><br>
-{{#schedule}}
-{{{.}}}
-{{/schedule}}
+<div class="big-div" align="center">
+	<a href="/schedule/updateschedule">Обновить расписание</a>
+</div>
+<div class="big-div" align="center">
+	{{#schedule}}
+	{{{.}}}
+	{{/schedule}}
+</div>
 </body>
 </html>

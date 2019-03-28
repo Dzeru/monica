@@ -3,8 +3,7 @@ package com.dzeru.monica.services;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -14,7 +13,7 @@ public class ScheduleService
 	@Value("${schedule.group}")
 	private String group;
 
-	public String getSchedule()
+	public String getScheduleFromWeb()
 	{
 		String pageWithSchedule = "";
 
@@ -39,7 +38,8 @@ public class ScheduleService
 			bf.close();
 
 			pageWithSchedule = pageWithSchedule.substring(pageWithSchedule.indexOf("<table id='schedule'>"), pageWithSchedule.indexOf("</table>") + 8);
-			System.out.println(pageWithSchedule);
+
+			saveScheduleToFile(pageWithSchedule);
 		}
 		catch(Exception e)
 		{
@@ -49,5 +49,47 @@ public class ScheduleService
 		return pageWithSchedule;
 	}
 
+	public String getScheduleFromFile()
+	{
+		String pageWithSchedule = "";
+		try
+		{
+			File scheduleFile = new File("src/main/resources/schedule.txt");
+			//InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("schedule.txt");
 
+			if(!scheduleFile.exists())
+			{
+				scheduleFile.createNewFile();
+			}
+
+			BufferedReader bf = new BufferedReader(new FileReader(scheduleFile));
+			pageWithSchedule = bf.readLine();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return pageWithSchedule;
+	}
+
+	private void saveScheduleToFile(String pageWithSchedule)
+	{
+		try
+		{
+			File scheduleFile = new File("src/main/resources/schedule.txt");
+
+			if(!scheduleFile.exists())
+			{
+				scheduleFile.createNewFile();
+			}
+
+			FileWriter fw = new FileWriter(scheduleFile);
+			fw.write(pageWithSchedule);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }
