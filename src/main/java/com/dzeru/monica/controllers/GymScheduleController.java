@@ -28,10 +28,10 @@ public class GymScheduleController
 		return "gymschedule";
 	}
 
-	@PostMapping("/addgymclass")
-	public String addGymClass(int lesson, int day, String description)
+	@PostMapping("/addgymlesson")
+	public String addGymLesson(int lesson, int day, String note)
 	{
-		gymScheduleService.addGymClass(lesson, day, description);
+		gymScheduleService.addGymLesson(lesson, day, note);
 		return "redirect:/gymschedule/gymschedule";
 	}
 }

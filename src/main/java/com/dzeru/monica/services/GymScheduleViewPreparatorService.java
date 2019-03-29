@@ -19,7 +19,7 @@ public class GymScheduleViewPreparatorService
 	{
 		int rowAmount = 6;
 		int columnAmount = 6;
-		String[][] gymSchedule = gymScheduleService.loadGymScheduleFromFile();
+		String[][] gymSchedule = gymScheduleService.loadGymScheduleFromDB();
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("<table style=\"display: inline-block\">");

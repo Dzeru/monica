@@ -1,53 +1,38 @@
 package com.dzeru.monica.services;
 
+import com.dzeru.monica.domain.GymLesson;
+import com.dzeru.monica.repos.GymLessonRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GymScheduleService
 {
-	private final static String GYM_SCHEDULE_FILE_NAME = "gymSchedule.txt";
+	@Autowired
+	private GymLessonRepo gymLessonRepo;
 
-	public void addGymClass(int lesson, int day, String description)
+	public void addGymLesson(int lesson, int day, String note)
 	{
-		try
-		{
-			FileWriter fw = new FileWriter("src/main/resources/" + GYM_SCHEDULE_FILE_NAME, true);
-			fw.write(lesson + "," + day + "," + description + "\r\n");
-			fw.flush();
-			fw.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		GymLesson gymLesson = new GymLesson();
+		gymLesson.setLesson(lesson);
+		gymLesson.setDay(day);
+		gymLesson.setNote(note);
+		gymLessonRepo.save(gymLesson);
 	}
 
-	public String[][] loadGymScheduleFromFile()
+	public String[][] loadGymScheduleFromDB()
 	{
 		String[][] gymSchedule = new String[6][6];
 
-		InputStream s = Thread.currentThread().getContextClassLoader().getResourceAsStream(GYM_SCHEDULE_FILE_NAME);
-		BufferedReader reader = new BufferedReader(new InputStreamReader(s));
+		List<GymLesson> gymLessons = gymLessonRepo.findAll();
 
-		try
+		for(GymLesson g : gymLessons)
 		{
-			String gymString = reader.readLine();
-
-			while(gymString != null)
-			{
-				String[] parseGymString = gymString.split(",");
-				int lesson = Integer.parseInt(parseGymString[0]);
-				int day = Integer.parseInt(parseGymString[1]);
-				String description = parseGymString[2];
-				gymSchedule[lesson - 1][day - 1] = description;
-				gymString = reader.readLine();
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
+			gymSchedule[g.getLesson() - 1][g.getDay() - 1] = g.getNote();
 		}
 
 		return gymSchedule;
