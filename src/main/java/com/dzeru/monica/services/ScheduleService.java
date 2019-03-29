@@ -1,17 +1,24 @@
 package com.dzeru.monica.services;
 
+import com.dzeru.monica.domain.Schedule;
+import com.dzeru.monica.repos.ScheduleRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 @Service
 public class ScheduleService
 {
 	@Value("${schedule.group}")
 	private String group;
+
+	@Autowired
+	private ScheduleRepo scheduleRepo;
 
 	public void getScheduleFromWeb()
 	{
@@ -39,7 +46,7 @@ public class ScheduleService
 
 			pageWithSchedule = pageWithSchedule.substring(pageWithSchedule.indexOf("<table id='schedule'>"), pageWithSchedule.indexOf("</table>") + 8);
 
-			saveScheduleToFile(pageWithSchedule);
+			saveScheduleToDB(pageWithSchedule);
 		}
 		catch(Exception e)
 		{
@@ -47,46 +54,24 @@ public class ScheduleService
 		}
 	}
 
-	public String getScheduleFromFile()
+	public String getScheduleFromDB()
 	{
-		String pageWithSchedule = "";
-		try
+		List<Schedule> schedule = scheduleRepo.findAll();
+
+		if(!schedule.isEmpty())
 		{
-			File scheduleFile = new File("src/main/resources/schedule.txt");
-
-			if(!scheduleFile.exists())
-			{
-				scheduleFile.createNewFile();
-			}
-
-			BufferedReader bf = new BufferedReader(new FileReader(scheduleFile));
-			pageWithSchedule = bf.readLine();
+			return schedule.get(0).getScheduleTable();
 		}
-		catch(Exception e)
+		else
 		{
-			e.printStackTrace();
+			return null;
 		}
-
-		return pageWithSchedule;
 	}
 
-	private void saveScheduleToFile(String pageWithSchedule)
+	private void saveScheduleToDB(String pageWithSchedule)
 	{
-		try
-		{
-			File scheduleFile = new File("src/main/resources/schedule.txt");
-
-			if(!scheduleFile.exists())
-			{
-				scheduleFile.createNewFile();
-			}
-
-			FileWriter fw = new FileWriter(scheduleFile);
-			fw.write(pageWithSchedule);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		Schedule schedule = new Schedule();
+		schedule.setScheduleTable(pageWithSchedule);
+		scheduleRepo.save(schedule);
 	}
 }

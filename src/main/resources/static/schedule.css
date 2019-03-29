@@ -95,3 +95,10 @@ a,a:hover
     text-decoration: none;
     font-size: 18px;
 }
+
+
+textarea
+{
+    width: 98vw;
+    height: 90vh;
+}

@@ -8,13 +8,10 @@
 </head>
 <body>
 <div class="big-div" align="center">
-	<a href="/schedule/updateschedule">Обновить расписание</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="/schedule/editschedule">Редактировать расписание</a>
-</div>
-<div class="big-div" align="center">
-	{{#schedule}}
-	{{{.}}}
-	{{/schedule}}
+	<form action="/schedule/saveditedschedule" method="post">
+		<textarea class="" name="schedule">{{#schedule}}{{.}}{{/schedule}}</textarea><br>
+		<input type="submit" value="Сохранить"/>
+	</form>
 </div>
 </body>
 </html>
