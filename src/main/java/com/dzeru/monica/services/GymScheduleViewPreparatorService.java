@@ -13,6 +13,7 @@ public class GymScheduleViewPreparatorService
 	private final static String BORDER = "border-width:thin;border-style:solid;border-color:#000;";
 	private final static String CELL_SIZE = "width:15vh;height:15vh;";
 	private final static String TEXT_ALIGN = "text-align:center;vertical-align:middle;";
+	private final static String PADDING = "padding:5px 5px";
 
 	public String prepareGymScheduleView()
 	{
@@ -39,12 +40,12 @@ public class GymScheduleViewPreparatorService
 
 				if(gymSchedule[ri][ci] != null && !gymSchedule[ri][ci].isEmpty())
 				{
-					sb.append("<td style=\"" + BACKGROUND + CELL_SIZE + BORDER + TEXT_ALIGN + "\">");
+					sb.append("<td style=\"" + BACKGROUND + CELL_SIZE + BORDER + TEXT_ALIGN + PADDING + "\">");
 					sb.append(gymSchedule[ri][ci]);
 				}
 				else
 				{
-					sb.append("<td style=\"" + CELL_SIZE + BORDER + TEXT_ALIGN + "\">");
+					sb.append("<td style=\"" + CELL_SIZE + BORDER + TEXT_ALIGN + PADDING + "\">");
 					sb.append(".");
 				}
 
@@ -53,7 +54,7 @@ public class GymScheduleViewPreparatorService
 			sb.append("</tr>");
 		}
 
-		sb.append("</table");
+		sb.append("</table>");
 
 		return sb.toString();
 	}

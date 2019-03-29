@@ -9,11 +9,11 @@ public class GymScheduleService
 {
 	private final static String GYM_SCHEDULE_FILE_NAME = "gymSchedule.txt";
 
-	public boolean addGymClass(int lesson, int day, String description)
+	public void addGymClass(int lesson, int day, String description)
 	{
 		try
 		{
-			FileWriter fw = new FileWriter(GYM_SCHEDULE_FILE_NAME, true);
+			FileWriter fw = new FileWriter("src/main/resources/" + GYM_SCHEDULE_FILE_NAME, true);
 			fw.write(lesson + "," + day + "," + description + "\r\n");
 			fw.flush();
 			fw.close();
@@ -21,10 +21,7 @@ public class GymScheduleService
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return false;
 		}
-
-		return true;
 	}
 
 	public String[][] loadGymScheduleFromFile()
