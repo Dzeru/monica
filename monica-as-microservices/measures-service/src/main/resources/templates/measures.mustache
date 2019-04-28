@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:="http://www.w3.org/1999/xhtml">
+<head>
+	{{> meta}}
+	<title>Monica</title>
+	<link rel="stylesheet" type="text/css" href="/measures.css">
+</head>
+<body class="measure-background">
+{{> addmeasureform}}
+<div>
+{{#msrs}}
+<div class="mb-20px">
+	<form method="post">
+		<table class="measure-table">
+			<tr>
+				<td><input class="input-table-measure font-bold" type="text" name="name" value="{{measure.name}}" size="35"/></td>
+				<td><input class="input-table-measure tar" type="text" name="doneSteps" value="{{measure.doneSteps}}" size="4"/>/<input class="input-table-measure" type="text" name="allSteps" value="{{measure.allSteps}}" size="4"/></td>
+				<td><span>{{percentage}}%</span></td>
+				<td><input class="usual-button" type="submit" formaction="updatemeasure/{{measure.id}}" value="Обновить"/></td>
+			</tr>
+			<tr>
+				<td colspan="3"><input class="input-table-measure" type="text" name="note" value="{{measure.note}}" size="40"/></td>
+				<td><input class="usual-button" type="submit" formaction="deletemeasure/{{measure.id}}" value="Удалить"/></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="mb-40px">
+	<form method="post">
+			<div class="measure-button-div fl">
+				<input class="measure-button" type="submit" formaction="minussteps/{{measure.id}}" value="-"/>
+			</div>
+			{{{htmlView}}}
+			<div class="measure-button-div fr">
+				<input class="measure-button" type="submit" formaction="plussteps/{{measure.id}}" value="+"/>
+			</div>
+	</form>
+</div>
+{{/msrs}}
+</div>
+{{^msrs}}
+<div>
+Мензурок пока нет
+</div>
+{{/msrs}}
+{{> addmeasureform}}
+</body>
+</html>
