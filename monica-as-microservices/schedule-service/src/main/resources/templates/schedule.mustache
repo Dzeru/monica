@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:=http://www.w3.org/1999/xhtml>
+<head>
+	{{> meta}}
+	<title>Monica</title>
+	<link rel="stylesheet" type="text/css" href="/schedule.css">
+</head>
+<body>
+<div class="big-div" align="center">
+	<a href="/schedule/updateschedule">Обновить расписание</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="/schedule/editschedule">Редактировать расписание</a>
+</div>
+<div class="big-div" align="center">
+	{{#schedule}}
+	{{{.}}}
+	{{/schedule}}
+</div>
+</body>
+</html>

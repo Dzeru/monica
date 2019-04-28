@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:=http://www.w3.org/1999/xhtml>
+<head>
+	{{> meta}}
+	<title>Monica</title>
+	<link rel="stylesheet" type="text/css" href="/schedule.css">
+</head>
+<body>
+<div class="big-div" align="center">
+	<form action="/schedule/saveeditedschedule" method="post">
+		<textarea class="" name="schedule">{{#schedule}}{{.}}{{/schedule}}</textarea><br>
+		<input type="submit" value="Сохранить"/>
+	</form>
+</div>
+</body>
+</html>
